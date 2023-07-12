@@ -96,7 +96,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
         </div>
 
   </div>
-
+<ng-container *ngIf="showMore">
   <div>
     
         <label for="currency">Currency:</label>
@@ -131,7 +131,10 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
     <input type="text" id="website" formControlName="website">
   </div>
 
+  </ng-container>
+
   <input type="submit" [disabled]="formGroup.invalid"/>
+  <input type="button" [disabled]="showMore" value="Show More" (click)="showMore = true;"/>
 
 </form>
   </ng-container>
@@ -155,6 +158,8 @@ export class App implements OnInit {
   public timezones: string[] = [];
 
   public isHttpReqInProcess: boolean = false;
+
+  public showMore: boolean = false;
 
   constructor(private fb: FormBuilder, private timezoneSvc: TimezoneService) {}
 
